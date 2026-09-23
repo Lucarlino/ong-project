@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mãos Solidárias - Projetos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+</head>
+<body>
+
+    <header>
+        <h1>Nossos Projetos Sociais</h1>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu de navegação">&#9776;</label>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li class="has-dropdown">
+                    <a href="projetos.html">Projetos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="projetos.html#voluntariado">Voluntariado</a></li>
+                        <li><a href="projetos.html#doacoes">Doações</a></li>
+                    </ul>
+                </li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="voluntariado">
+            <h2>Como Ser Voluntário</h2>
+
+            <div class="grid">
+                <article class="project col-6">
+                    <div>
+                        <span class="badge badge-voluntariado">Voluntariado</span>
+                        <h3>Atuação em Campo</h3>
+                        <p>
+                            Voluntários que desejam atuar diretamente com as comunidades atendidas
+                            participam da distribuição de doações, oficinas educativas e eventos
+                            de mobilização social nos bairros parceiros.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="project col-6">
+                    <div>
+                        <span class="badge badge-voluntariado">Voluntariado</span>
+                        <h3>Apoio Administrativo</h3>
+                        <p>
+                            Para quem prefere contribuir remotamente, oferecemos frentes de apoio em
+                            organização de campanhas, comunicação nas redes sociais e gestão de
+                            cadastro de doadores.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="doacoes">
+            <h2>Campanhas de Doação</h2>
+
+            <div class="grid">
+                <article class="project col-6">
+                    <div>
+                        <span class="badge badge-doacao">Doação</span>
+                        <h3>Doação de Alimentos</h3>
+                        <p>
+                            Nossa campanha permanente de arrecadação de alimentos não perecíveis
+                            conta com pontos de coleta em diversos bairros da cidade. Consulte o
+                            ponto mais próximo de você na seção de cadastro.
+                        </p>
+                    </div>
+                    <a href="#modal-alimentos" class="btn-link">Ver detalhes da campanha</a>
+                </article>
+
+                <article class="project col-6">
+                    <div>
+                        <span class="badge badge-doacao">Doação</span>
+                        <h3>Doação Financeira</h3>
+                        <p>
+                            Contribuições financeiras, recorrentes ou pontuais, sustentam nossos
+                            programas de capacitação profissional e apoio educacional às famílias
+                            atendidas.
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Modal acionado via :target, sem necessidade de JavaScript -->
+            <div id="modal-alimentos" class="modal-overlay">
+                <div class="modal">
+                    <a href="#doacoes" class="modal-close" aria-label="Fechar detalhes da campanha">&times;</a>
+                    <h3>Doação de Alimentos</h3>
+                    <p>
+                        Os pontos de coleta funcionam de segunda a sábado, das 9h às 18h.
+                        Aceitamos alimentos não perecíveis dentro do prazo de validade,
+                        embalados e identificados. Toda a arrecadação é redistribuída em
+                        até 72 horas para as famílias cadastradas no programa.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ONG Mãos Solidárias. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
