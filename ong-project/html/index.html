@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mãos Solidárias</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>ONG Mãos Solidárias</h1>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu de navegação">&#9776;</label>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#/">Início</a></li>
+                <li class="has-dropdown">
+                    <a href="#/projetos">Projetos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/projetos">Voluntariado</a></li>
+                        <li><a href="#/projetos">Doações</a></li>
+                    </ul>
+                </li>
+                <li><a href="#/cadastro">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contêiner onde o roteador injeta o conteúdo de cada rota -->
+    <main id="app"></main>
+
+    <footer>
+        <p>&copy; 2026 ONG Mãos Solidárias. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- type="module" é necessário por causa do import/export entre os arquivos JS -->
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>
