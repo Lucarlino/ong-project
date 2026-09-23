@@ -25,3 +25,7 @@ O terceiro setor brasileiro movimenta mais de R$ 15 bilhões anuais e emprega ce
 - Componentes de feedback visual (alertas, toasts, modais, badges)
 
 ## 📁 Estrutura de pastas
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins educacionais, como parte da disciplina de Desenvolvimento Front-End para Web.
