@@ -26,6 +26,32 @@ O terceiro setor brasileiro movimenta mais de R$ 15 bilhões anuais e emprega ce
 
 ## 📁 Estrutura de pastas
 
-## 📄 Licença
+```
+ong-project/
+├── README.md
+└── ong-project/
+    ├── css/        → style.css
+    ├── html/       → index.html, projetos.html, cadastro.html
+    ├── imagens/    → equipe.jpg
+    └── js/         → main.js, router.js, storage.js, templates.js, validation.js
+```
 
-Este projeto foi desenvolvido para fins educacionais, como parte da disciplina de Desenvolvimento Front-End para Web.
+## ▶️ Como executar
+
+1. Instale o Git e o VS Code com a extensão Live Server.
+2. Clone o repositório: `git clone https://github.com/Lucarlino/ong-project.git`
+3. Abra a pasta no VS Code.
+4. Clique com o botão direito em `ong-project/html/index.html` e escolha "Open with Live Server".
+
+Não há dependências para instalar: a date-fns é carregada por CDN.
+
+## 🌿 Estratégia GitFlow
+
+- `main`: versões estáveis, marcadas com tags (ex.: `v1.0.0`)
+- `develop`: integração do desenvolvimento
+- `feature/`: novas funcionalidades, criadas a partir da `develop`
+- Commits semânticos (`feat:`, `docs:`) e integração por Pull Request
+
+## 👤 Autor
+
+Lucas Souza Santos
