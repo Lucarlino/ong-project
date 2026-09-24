@@ -15,6 +15,7 @@
     /* ---- Cores neutras (texto, fundo, bordas) ---- */
     --color-neutral-900: #1a1a1a;    /* texto principal */
     --color-neutral-600: #555555;    /* texto secundário / rodapé */
+    --color-neutral-500: #767676;    /* borda de campos de formulário (4,5:1 no branco) */
     --color-neutral-300: #cccccc;    /* bordas e divisores */
     --color-neutral-100: #f5f5f5;    /* fundo da página */
     --color-white: #ffffff;          /* fundo de cartões e inputs */
@@ -69,16 +70,19 @@ header h1 {
     font-size: var(--font-size-xl);
 }
 
-/* ---- Checkbox invisível que controla o estado do menu mobile ---- */
+/* ---- Checkbox do menu das páginas estáticas antigas (cadastro.html e projetos.html) ---- */
 .nav-toggle {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
-/* ---- Botão hambúrguer (rótulo do checkbox) ---- */
+/* ---- Botão hambúrguer (<button> com aria-expanded na SPA; também serve de label nas páginas antigas) ---- */
 .nav-toggle-label {
     display: none;
+    background: none;
+    border: none;
+    padding: 0;
     font-size: 1.75rem;
     line-height: 1;
     color: var(--color-white);
@@ -172,7 +176,9 @@ nav {
         gap: var(--space-2);
     }
 
-    /* :checked no input (fora da vista) exibe o <ul> irmão via seletor ~ */
+    /* .aberto (adicionada pelo JS junto com aria-expanded) exibe o menu na SPA;
+       :checked mantém o menu funcionando nas páginas estáticas antigas */
+    .nav-menu.aberto,
     .nav-toggle:checked ~ nav .nav-menu {
         display: flex;
     }
@@ -274,7 +280,7 @@ label {
 input, select {
     width: 100%;
     padding: var(--space-2);
-    border: 2px solid var(--color-neutral-300);
+    border: 2px solid var(--color-neutral-500);
     border-radius: 4px;
     font-size: var(--font-size-sm);
     background-repeat: no-repeat;
@@ -560,4 +566,55 @@ footer {
         padding-left: var(--space-6);
         padding-right: var(--space-6);
     }
+}
+
+/* ==========================================================
+   Acessibilidade (WCAG 2.1 AA)
+   ========================================================== */
+
+/* Botões que substituíram links (gatilho e fechar do modal) */
+.btn-link,
+.modal-close {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn-link {
+    font-size: var(--font-size-sm);
+}
+
+/* O <main> recebe foco por JavaScript ao trocar de rota: sem contorno */
+main:focus {
+    outline: none;
+}
+
+/* Contorno de foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-primary-light);
+    outline-offset: 2px;
+}
+
+header a:focus-visible,
+header button:focus-visible {
+    outline-color: var(--color-secondary-light);
+}
+
+/* Link "Pular para o conteúdo": escondido até receber foco */
+.skip-link {
+    position: absolute;
+    left: var(--space-2);
+    top: -4rem;
+    background-color: var(--color-white);
+    color: var(--color-primary-dark);
+    padding: var(--space-2) var(--space-3);
+    font-weight: bold;
+    z-index: 400;
+}
+
+.skip-link:focus {
+    top: var(--space-2);
 }

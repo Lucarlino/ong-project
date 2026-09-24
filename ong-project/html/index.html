@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <a href="#app" class="skip-link" id="skip-link">Pular para o conteúdo</a>
 
     <header>
         <h1>ONG Mãos Solidárias</h1>
 
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu de navegação">&#9776;</label>
+        <button type="button" class="nav-toggle-label" id="menu-toggle"
+                aria-expanded="false" aria-controls="menu-principal"
+                aria-label="Abrir menu de navegação">&#9776;</button>
 
-        <nav>
-            <ul class="nav-menu">
+        <nav aria-label="Navegação principal">
+            <ul class="nav-menu" id="menu-principal">
                 <li><a href="#/">Início</a></li>
                 <li class="has-dropdown">
                     <a href="#/projetos">Projetos</a>
@@ -30,7 +32,7 @@
     </header>
 
     <!-- Contêiner onde o roteador injeta o conteúdo de cada rota -->
-    <main id="app"></main>
+    <main id="app" tabindex="-1"></main>
 
     <footer>
         <p>&copy; 2026 ONG Mãos Solidárias. Todos os direitos reservados.</p>
