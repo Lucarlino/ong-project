@@ -129,3 +129,19 @@ document.addEventListener('keydown', (evento) => {
 });
 
 initRouter();
+
+const temaSalvo = localStorage.getItem('tema');
+if (temaSalvo === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+
+function alternarTema() {
+  const atual = document.documentElement.getAttribute('data-theme');
+  const novo = atual === 'dark' ? 'light' : 'dark';
+  if (novo === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  localStorage.setItem('tema', novo);
+}

@@ -618,3 +618,15 @@ header button:focus-visible {
 .skip-link:focus {
     top: var(--space-2);
 }
+
+/* ==========================================================
+   Modo escuro (dark mode) - sobrescrita dos tokens
+   ========================================================== */
+
+[data-theme="dark"] {
+    --color-neutral-900: #f5f5f5;   /* texto principal (antes escuro, agora claro) */
+    --color-neutral-600: #b3b3b3;   /* texto secundário */
+    --color-neutral-100: #121212;   /* fundo da página (quase preto, não puro) */
+    --color-white: #1e1e1e;         /* fundo de cartões/inputs (cinza escuro) */
+    --color-primary-light: #5b9bd5; /* links/hover mais claros p/ legibilidade no escuro */
+}
