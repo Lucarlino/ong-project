@@ -66,8 +66,8 @@ const gruposCadastro = [
         atributo: 'id="user-details"',
         legenda: 'Dados do Usuário',
         campos: [
-            { id: 'nome', rotulo: 'Nome completo:', tipo: 'text', placeholder: 'Digite seu nome completo' },
-            { id: 'nascimento', rotulo: 'Data de nascimento:', tipo: 'date' },
+            { id: 'nome', rotulo: 'Nome completo:', tipo: 'text', placeholder: 'Digite seu nome completo', autocomplete: 'name' },
+            { id: 'nascimento', rotulo: 'Data de nascimento:', tipo: 'date', autocomplete: 'bday' },
             {
                 id: 'cpf', rotulo: 'CPF:', tipo: 'text',
                 pattern: '\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}',
@@ -80,21 +80,21 @@ const gruposCadastro = [
         atributo: 'id="contact-info"',
         legenda: 'Informações de Contato',
         campos: [
-            { id: 'email', rotulo: 'E-mail:', tipo: 'email', placeholder: 'seuemail@exemplo.com' },
+            { id: 'email', rotulo: 'E-mail:', tipo: 'email', placeholder: 'seuemail@exemplo.com', autocomplete: 'email' },
             {
-                id: 'telefone', rotulo: 'Telefone:', tipo: 'tel',
+                id: 'telefone', rotulo: 'Telefone:', tipo: 'tel', autocomplete: 'tel',
                 pattern: '\\(\\d{2}\\) \\d{4,5}-\\d{4}',
                 placeholder: '(00) 00000-0000',
                 title: 'Formato esperado: (00) 00000-0000'
             },
             {
-                id: 'cep', rotulo: 'CEP:', tipo: 'text',
+                id: 'cep', rotulo: 'CEP:', tipo: 'text', autocomplete: 'postal-code',
                 pattern: '\\d{5}-\\d{3}',
                 placeholder: '00000-000',
                 title: 'Formato esperado: 00000-000'
             },
-            { id: 'endereco', rotulo: 'Endereço:', tipo: 'text', placeholder: 'Rua, número, bairro' },
-            { id: 'cidade', rotulo: 'Cidade:', tipo: 'text', placeholder: 'Sua cidade' },
+            { id: 'endereco', rotulo: 'Endereço:', tipo: 'text', placeholder: 'Rua, número, bairro', autocomplete: 'street-address' },
+            { id: 'cidade', rotulo: 'Cidade:', tipo: 'text', placeholder: 'Sua cidade', autocomplete: 'address-level2' },
             { id: 'estado', rotulo: 'Estado:', tipo: 'text', placeholder: 'UF', maxlength: 2 }
         ]
     },
@@ -122,16 +122,16 @@ const cardProjeto = ({ categoria, titulo, descricao, detalhes }) => `
             <p>${escapeHTML(descricao)}</p>
         </div>
         ${detalhes
-            ? `<a href="#/projetos" class="btn-link" data-abrir-modal="${detalhes.id}">Ver detalhes da campanha</a>`
+            ? `<button type="button" class="btn-link" data-abrir-modal="${detalhes.id}">Ver detalhes da campanha</button>`
             : ''}
     </article>
 `;
 
 const modalDetalhes = ({ titulo, detalhes }) => `
     <div id="${detalhes.id}" class="modal-overlay">
-        <div class="modal">
-            <a href="#/projetos" class="modal-close" data-fechar-modal aria-label="Fechar detalhes da campanha">&times;</a>
-            <h3>${escapeHTML(titulo)}</h3>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="${detalhes.id}-titulo">
+            <button type="button" class="modal-close" data-fechar-modal aria-label="Fechar detalhes da campanha">&times;</button>
+            <h3 id="${detalhes.id}-titulo">${escapeHTML(titulo)}</h3>
             <p>${escapeHTML(detalhes.texto)}</p>
         </div>
     </div>
@@ -161,6 +161,7 @@ const campoFormulario = (campo) => {
                ${campo.pattern ? `pattern="${escapeHTML(campo.pattern)}"` : ''}
                ${campo.title ? `title="${escapeHTML(campo.title)}"` : ''}
                ${campo.maxlength ? `maxlength="${campo.maxlength}"` : ''}
+               ${campo.autocomplete ? `autocomplete="${campo.autocomplete}"` : ''}
                required>`;
 
     return `

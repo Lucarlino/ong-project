@@ -8,15 +8,42 @@ import { adicionarCadastro } from './storage.js';
 const app = document.getElementById('app');
 
 // ---------- Modal ----------
-function abrirModal(id) {
-    document.getElementById(id)?.classList.add('aberto');
+// Guarda o botão que abriu o modal para devolver o foco a ele ao fechar
+let gatilhoModal = null;
+
+function abrirModal(id, gatilho) {
+    const modal = document.getElementById(id);
+    if (!modal) return;
+
+    gatilhoModal = gatilho;
+    modal.classList.add('aberto');
+    modal.querySelector('[data-fechar-modal]')?.focus(); // foco entra no modal
 }
 
 function fecharModais() {
     document
         .querySelectorAll('.modal-overlay.aberto')
         .forEach((modal) => modal.classList.remove('aberto'));
+
+    gatilhoModal?.focus(); // foco volta ao botão que abriu o modal
+    gatilhoModal = null;
 }
+
+// ---------- Menu hambúrguer (botão com aria-expanded) ----------
+const botaoMenu = document.getElementById('menu-toggle');
+const menuPrincipal = document.getElementById('menu-principal');
+
+botaoMenu.addEventListener('click', () => {
+    const aberto = menuPrincipal.classList.toggle('aberto');
+    botaoMenu.setAttribute('aria-expanded', String(aberto));
+});
+
+// ---------- Link "Pular para o conteúdo" ----------
+// Feito por JS porque href="#app" seria lido pelo roteador como uma rota
+document.getElementById('skip-link').addEventListener('click', (evento) => {
+    evento.preventDefault();
+    app.focus();
+});
 
 // ---------- Formulário de cadastro ----------
 function tratarEnvio(form) {
@@ -46,7 +73,7 @@ app.addEventListener('click', (evento) => {
     const gatilhoAbrir = evento.target.closest('[data-abrir-modal]');
     if (gatilhoAbrir) {
         evento.preventDefault(); // o link não deve mexer no hash (rota)
-        abrirModal(gatilhoAbrir.dataset.abrirModal);
+        abrirModal(gatilhoAbrir.dataset.abrirModal, gatilhoAbrir);
         return;
     }
 
@@ -90,9 +117,15 @@ app.addEventListener('focusout', (evento) => {
     }
 });
 
-// keydown: tecla Escape fecha o modal aberto
+// keydown: Escape fecha o modal; Tab fica preso dentro do modal aberto
 document.addEventListener('keydown', (evento) => {
     if (evento.key === 'Escape') fecharModais();
+
+    const aberto = document.querySelector('.modal-overlay.aberto');
+    if (evento.key === 'Tab' && aberto) {
+        evento.preventDefault(); // o modal só tem um elemento focável (fechar)
+        aberto.querySelector('[data-fechar-modal]').focus();
+    }
 });
 
 initRouter();
